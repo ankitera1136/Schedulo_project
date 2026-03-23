@@ -17,23 +17,25 @@
             + Write new post
         </a>
     </div>
+
     <!-- stats row -->
     <div class="grid grid-cols-3 gap-4 mb-8">
         <div class="bg-white border border-slate-200 rounded-xl p-4">
             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Total Posts</p>
-            <p class="text-2xl font-bold text-slate-800">5</p>
+            <p class="text-2xl font-bold text-slate-800">{{ total }}</p>
         </div>
         <div class="bg-white border border-slate-200 rounded-xl p-4">
             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Published</p>
-            <p class="text-2xl font-bold text-emerald-600">3</p>
+            <p class="text-2xl font-bold text-emerald-600">{{ published }}</p>
         </div>
         <div class="bg-white border border-slate-200 rounded-xl p-4">
             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Drafts</p>
-            <p class="text-2xl font-bold text-amber-500">2</p>
+            <p class="text-2xl font-bold text-amber-500">{{ drafts }}</p>
         </div>
     </div>
 
     <!-- posts table -->
+    {% if posts %}
     <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
 
         <!-- table header -->
@@ -44,144 +46,66 @@
             <p class="col-span-2 text-xs font-bold text-slate-400 uppercase tracking-widest">Actions</p>
         </div>
 
-        <!-- row 1 — published -->
-        <div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 hover:bg-slate-50 transition-all items-center">
+        {% for post in posts %}
+        <div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 hover:bg-slate-50 transition-all items-center last:border-b-0">
+
+            <!-- title -->
             <div class="col-span-6">
                 <p class="text-sm font-semibold text-slate-800 leading-snug">
-                    The day I almost dropped out and what changed my mind
+                    {{ post.title }}
                 </p>
+                {% if post.status == 'draft' %}
+                <p class="text-xs text-amber-500 font-medium mt-0.5">
+                    Draft — not visible to others
+                </p>
+                {% endif %}
             </div>
+
+            <!-- status badge -->
             <div class="col-span-2">
+                {% if post.status == 'published' %}
                 <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full">
                     Published
                 </span>
-            </div>
-            <div class="col-span-2">
-                <p class="text-xs text-slate-400">Mar 18, 2026</p>
-            </div>
-            <div class="col-span-2 flex items-center gap-2">
-                <a href="#"
-                   class="text-xs text-indigo-500 hover:text-indigo-700 font-semibold transition-all">
-                    Edit
-                </a>
-                <span class="text-slate-200">|</span>
-                <button class="text-xs text-red-400 hover:text-red-600 font-semibold transition-all">
-                    Delete
-                </button>
-            </div>
-        </div>
-
-        <!-- row 2 — published -->
-        <div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 hover:bg-slate-50 transition-all items-center">
-            <div class="col-span-6">
-                <p class="text-sm font-semibold text-slate-800 leading-snug">
-                    Building my first real project from scratch
-                </p>
-            </div>
-            <div class="col-span-2">
-                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full">
-                    Published
-                </span>
-            </div>
-            <div class="col-span-2">
-                <p class="text-xs text-slate-400">Mar 17, 2026</p>
-            </div>
-            <div class="col-span-2 flex items-center gap-2">
-                <a href="#"
-                   class="text-xs text-indigo-500 hover:text-indigo-700 font-semibold transition-all">
-                    Edit
-                </a>
-                <span class="text-slate-200">|</span>
-                <button class="text-xs text-red-400 hover:text-red-600 font-semibold transition-all">
-                    Delete
-                </button>
-            </div>
-        </div>
-
-        <!-- row 3 — draft -->
-        <div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 hover:bg-slate-50 transition-all items-center">
-            <div class="col-span-6">
-                <p class="text-sm font-semibold text-slate-800 leading-snug">
-                    Why I deleted Instagram for a month and what I learned
-                </p>
-                <p class="text-xs text-amber-500 font-medium mt-0.5">Draft — not visible to others</p>
-            </div>
-            <div class="col-span-2">
+                {% else %}
                 <span class="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full">
                     Draft
                 </span>
+                {% endif %}
             </div>
-            <div class="col-span-2">
-                <p class="text-xs text-slate-400">Mar 16, 2026</p>
-            </div>
-            <div class="col-span-2 flex items-center gap-2">
-                <a href="#"
-                   class="text-xs text-indigo-500 hover:text-indigo-700 font-semibold transition-all">
-                    Edit
-                </a>
-                <span class="text-slate-200">|</span>
-                <button class="text-xs text-red-400 hover:text-red-600 font-semibold transition-all">
-                    Delete
-                </button>
-            </div>
-        </div>
 
-        <!-- row 4 — published -->
-        <div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 hover:bg-slate-50 transition-all items-center">
-            <div class="col-span-6">
-                <p class="text-sm font-semibold text-slate-800 leading-snug">
-                    Lessons from failing my first technical interview
-                </p>
-            </div>
+            <!-- date -->
             <div class="col-span-2">
-                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full">
-                    Published
-                </span>
+                <p class="text-xs text-slate-400">{{ post.created_at|date:"M d, Y" }}</p>
             </div>
-            <div class="col-span-2">
-                <p class="text-xs text-slate-400">Mar 15, 2026</p>
-            </div>
-            <div class="col-span-2 flex items-center gap-2">
-                <a href="#"
-                   class="text-xs text-indigo-500 hover:text-indigo-700 font-semibold transition-all">
-                    Edit
-                </a>
-                <span class="text-slate-200">|</span>
-                <button class="text-xs text-red-400 hover:text-red-600 font-semibold transition-all">
-                    Delete
-                </button>
-            </div>
-        </div>
 
-        <!-- row 5 — draft -->
-        <div class="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-slate-50 transition-all items-center">
-            <div class="col-span-6">
-                <p class="text-sm font-semibold text-slate-800 leading-snug">
-                    How I manage my mental health during exam season
-                </p>
-                <p class="text-xs text-amber-500 font-medium mt-0.5">Draft — not visible to others</p>
-            </div>
-            <div class="col-span-2">
-                <span class="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full">
-                    Draft
-                </span>
-            </div>
-            <div class="col-span-2">
-                <p class="text-xs text-slate-400">Mar 14, 2026</p>
-            </div>
+            <!-- actions -->
             <div class="col-span-2 flex items-center gap-2">
-                <a href="#"
+                <a href="{% url 'post_edit' post.slug %}"
                    class="text-xs text-indigo-500 hover:text-indigo-700 font-semibold transition-all">
                     Edit
                 </a>
                 <span class="text-slate-200">|</span>
-                <button class="text-xs text-red-400 hover:text-red-600 font-semibold transition-all">
+                <a href="{% url 'post_delete' post.slug %}"
+                   class="text-xs text-red-400 hover:text-red-600 font-semibold transition-all">
                     Delete
-                </button>
+                </a>
             </div>
+
         </div>
+        {% endfor %}
 
     </div>
+
+    {% else %}
+    <div class="bg-white border border-slate-200 rounded-2xl p-16 text-center">
+        <p class="text-slate-400 text-sm mb-4">You haven't written any posts yet.</p>
+        <a href="{% url 'post_create' %}"
+           class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+            Write your first post
+        </a>
+    </div>
+    {% endif %}
 
 </div>
 
