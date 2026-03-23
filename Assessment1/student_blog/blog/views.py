@@ -104,6 +104,7 @@ def post_detail(request, slug):
 @login_required(login_url='login')
 def post_create(request):
     form = PostForm()
+    tags = Tag.objects.all()
 
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -114,14 +115,16 @@ def post_create(request):
 
             if Post.objects.filter(slug=post.slug).exists():
                 messages.error(request, 'A post with this title already exists.')
-                return render(request, 'blog/post_form.html', {'form': form})
+                return render(request, 'blog/post_form.html', {'form': form, 'tags': tags})
 
             post.save()
             form.save_m2m()
             messages.success(request, 'Post created successfully!')
             return redirect('post_detail', slug=post.slug)
+        else:
+            print(form.errors)
 
-    return render(request, 'blog/post_form.html', {'form': form})
+    return render(request, 'blog/post_form.html', {'form': form, 'tags': tags})
 
 @login_required(login_url='login')
 def post_edit(request, slug):
