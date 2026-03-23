@@ -46,6 +46,7 @@
                 type="checkbox"
                 name="tags"
                 value="{{ tag.id }}"
+                {% if post and tag in post.tags.all %}checked{% endif %}
                 class="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
             <span class="text-sm text-slate-600">{{ tag.name }}</span>
         </label>

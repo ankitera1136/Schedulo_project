@@ -129,21 +129,24 @@ def post_create(request):
 @login_required(login_url='login')
 def post_edit(request, slug):
     post = get_object_or_404(Post, slug=slug, author=request.user)
+    tags = Tag.objects.all()
     form = PostForm(instance=post)
 
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.slug = slugify(post.title)
             post.save()
             form.save_m2m()
             messages.success(request, 'Post updated successfully!')
             return redirect('post_detail', slug=post.slug)
+        else:
+            print(form.errors)
 
     return render(request, 'blog/post_form.html', {
         'form': form,
         'post': post,
+        'tags': tags,
     })
 
 

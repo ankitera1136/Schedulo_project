@@ -10,6 +10,6 @@ urlpatterns = [
     path('post/<slug:slug>/edit/', views.post_edit, name='post_edit'),
     path('post/<slug:slug>/delete/', views.post_delete, name='post_delete'),
     path('my-posts/', views.my_posts, name='my_posts'),
-    path('profile/<str:username>/', views.profile, name='profile'),
     path('profile/edit/', views.profile_edit, name='profile_edit'),
+    path('profile/<str:username>/', views.profile, name='profile'),
 ]
