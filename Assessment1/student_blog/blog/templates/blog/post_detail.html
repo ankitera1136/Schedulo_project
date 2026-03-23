@@ -1,0 +1,235 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Post — Inkwell{% endblock %}
+
+{% block content %}
+
+<!-- BACK LINK -->
+<div class="max-w-5xl mx-auto px-6 pt-6">
+    <a href="{% url 'home' %}"
+       class="inline-flex items-center gap-2 text-sm text-indigo-500 hover:text-indigo-600 transition-all">
+        ← Back to home
+    </a>
+</div>
+
+<!-- TWO COLUMN LAYOUT -->
+<div class="max-w-5xl mx-auto px-6 py-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <!-- LEFT COLUMN: post content -->
+    <div class="lg:col-span-2">
+
+        <!-- tags -->
+        <div class="flex gap-2 flex-wrap mb-4">
+            <span class="bg-violet-100 text-violet-700 text-xs font-semibold px-3 py-1 rounded-full">
+                College Life
+            </span>
+            <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
+                Productivity
+            </span>
+        </div>
+
+        <!-- title -->
+        <h1 class="text-3xl text-slate-800 leading-snug mb-4">
+            The day I almost dropped out and what changed my mind
+        </h1>
+
+        <!-- author and date -->
+        <div class="flex items-center gap-3 mb-6 pb-6 border-b border-slate-200">
+            <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold">
+                AK
+            </div>
+            <div>
+                <p class="text-sm font-semibold text-slate-700">Aryan K.</p>
+                <p class="text-xs text-slate-400">Mar 18, 2026 · 5 min read</p>
+            </div>
+        </div>
+
+        <!-- thumbnail -->
+        <div class="w-full h-64 bg-gradient-to-br from-indigo-900 to-violet-900 rounded-2xl flex items-center justify-center text-6xl mb-6">
+            ✍️
+        </div>
+
+        <!-- post body -->
+        <div class="prose-content space-y-4">
+            <p class="text-slate-600 text-base leading-relaxed">
+                It was week seven of semester two. I hadn't slept properly in days, my assignments were piling up, and I seriously considered calling it all off.
+            </p>
+            <p class="text-slate-600 text-base leading-relaxed">
+                Nobody around me seemed to be struggling the same way. Everyone looked like they had it figured out — submitting on time, attending every lecture, smiling in the corridors.
+            </p>
+            <p class="text-slate-600 text-base leading-relaxed">
+                What changed everything was one conversation with a senior I barely knew. He said something I'll never forget: "Everyone is struggling. Most people are just better at hiding it."
+            </p>
+        </div>
+        <!-- COMMENTS SECTION -->
+        <div class="mt-10 pt-8 border-t border-slate-200">
+
+            <h3 class="text-lg text-slate-800 font-semibold mb-6">
+                2 Comments
+            </h3>
+
+            <!-- single comment -->
+            <div class="bg-white border border-slate-200 rounded-xl p-4 mb-4">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs font-bold">
+                        SP
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-700">Sneha P.</p>
+                        <p class="text-xs text-slate-400">Mar 19, 2026</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    This hit really close to home. Thank you for sharing this so honestly.
+                </p>
+            </div>
+
+            <!-- single comment -->
+            <div class="bg-white border border-slate-200 rounded-xl p-4 mb-4">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white text-xs font-bold">
+                        RV
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-700">Rahul V.</p>
+                        <p class="text-xs text-slate-400">Mar 20, 2026</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    The part about everyone hiding their struggles — so true. We need more posts like this.
+                </p>
+            </div>
+
+            <!-- comment form -->
+            <div class="bg-white border border-slate-200 rounded-xl p-5 mt-6">
+                <h4 class="text-sm font-semibold text-slate-700 mb-4">
+                    Leave a comment
+                </h4>
+                <form method="POST">
+                    {% csrf_token %}
+                    <textarea
+                        name="body"
+                        rows="4"
+                        required
+                        placeholder="Share your thoughts..."
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none">
+                    </textarea>
+                    <div class="flex items-center justify-between mt-3">
+                        <p class="text-xs text-slate-400">
+                            {% if user.is_authenticated %}
+                                Commenting as {{ user.username }}
+                            {% else %}
+                                <a href="{% url 'login' %}" class="text-indigo-500 hover:text-indigo-600">
+                                    Login to comment
+                                </a>
+                            {% endif %}
+                        </p>
+                        {% if user.is_authenticated %}
+                        <button
+                            type="submit"
+                            class="bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white px-5 py-2 rounded-xl text-sm font-semibold transition-all">
+                            Post comment
+                        </button>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- END LEFT COLUMN -->
+     <!-- RIGHT COLUMN: sidebar -->
+    <div class="space-y-6">
+
+        <!-- author card -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+                About the author
+            </p>
+            <div class="flex flex-col items-center text-center gap-3">
+                <div class="w-14 h-14 rounded-full bg-indigo-600 flex items-center justify-center text-white text-lg font-bold">
+                    AK
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-slate-800">Aryan K.</p>
+                    <p class="text-xs text-slate-500 leading-relaxed mt-1">
+                        Computer Science student. Writing about tech, college life and the stuff nobody talks about.
+                    </p>
+                </div>
+                <a href="#"
+                   class="text-xs text-indigo-500 hover:text-indigo-600 font-semibold transition-all">
+                    View all posts →
+                </a>
+            </div>
+        </div>
+
+        <!-- related posts card -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+                Related Posts
+            </p>
+            <div class="space-y-4">
+
+                <a href="#" class="flex gap-3 group">
+                    <div class="w-12 h-12 rounded-lg bg-purple-50 flex items-center justify-center text-xl flex-shrink-0">
+                        💆
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-700 leading-snug group-hover:text-indigo-600 transition-all">
+                            What burnout actually feels like as a student
+                        </p>
+                        <p class="text-xs text-slate-400 mt-1">Mar 16</p>
+                    </div>
+                </a>
+
+                <a href="#" class="flex gap-3 group">
+                    <div class="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center text-xl flex-shrink-0">
+                        🎯
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-700 leading-snug group-hover:text-indigo-600 transition-all">
+                            Lessons from failing my first technical interview
+                        </p>
+                        <p class="text-xs text-slate-400 mt-1">Mar 15</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- tags card -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+                Tags
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <a href="?tag=college-life"
+                   class="bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-600 text-xs px-3 py-1.5 rounded-full transition-all">
+                    College Life
+                </a>
+                <a href="?tag=productivity"
+                   class="bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-600 text-xs px-3 py-1.5 rounded-full transition-all">
+                    Productivity
+                </a>
+                <a href="?tag=tech"
+                   class="bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-600 text-xs px-3 py-1.5 rounded-full transition-all">
+                    Tech
+                </a>
+                <a href="?tag=mental-health"
+                   class="bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-600 text-xs px-3 py-1.5 rounded-full transition-all">
+                    Mental Health
+                </a>
+                <a href="?tag=career"
+                   class="bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-600 text-xs px-3 py-1.5 rounded-full transition-all">
+                    Career
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!-- END RIGHT COLUMN -->
+
+</div>
+
+{% endblock %}

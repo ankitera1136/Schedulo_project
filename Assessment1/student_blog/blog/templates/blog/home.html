@@ -1,0 +1,301 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Home — Inkwell{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="bg-[#080f1a] relative overflow-hidden cursor-crosshair"
+     id="hero">
+
+    <!-- base text layer -->
+    <div class="absolute inset-0 px-6 pt-4 font-mono text-[10px] leading-[1.85] text-[#0d2137] break-words whitespace-pre-wrap overflow-hidden pointer-events-none"
+         id="hero-base"></div>
+
+    <!-- colour reveal layer -->
+    <div class="absolute inset-0 px-6 pt-4 font-mono text-[10px] leading-[1.85] break-words whitespace-pre-wrap overflow-hidden pointer-events-none"
+         id="hero-color"
+         style="background:linear-gradient(135deg,#22d3ee,#6366f1,#a855f7,#10b981);
+                -webkit-background-clip:text;
+                background-clip:text;
+                color:transparent;
+                -webkit-mask-image:radial-gradient(circle 130px at var(--mx,-500px) var(--my,-500px),black 0%,black 25%,transparent 80%);
+                mask-image:radial-gradient(circle 130px at var(--mx,-500px) var(--my,-500px),black 0%,black 25%,transparent 80%)">
+    </div>
+
+    <!-- glow layer -->
+    <div class="absolute inset-0 pointer-events-none"
+         id="hero-glow"
+         style="background:radial-gradient(circle 110px at var(--mx,-500px) var(--my,-500px),rgba(99,102,241,0.2) 0%,rgba(34,211,238,0.1) 50%,transparent 80%);
+                mix-blend-mode:screen">
+    </div>
+
+    <!-- hero content -->
+    <div class="relative z-10 max-w-5xl mx-auto px-6 py-12">
+        <p class="text-indigo-400 text-xs font-semibold tracking-widest uppercase mb-3">
+            Student Blog Platform
+        </p>
+        <h1 class="text-4xl text-white mb-3">
+            What's on student minds
+        </h1>
+        <p class="text-slate-500 text-sm mb-6">
+            Discover honest stories written by your peers
+        </p>
+
+        <!-- tag filter pills -->
+        <div class="flex gap-2 flex-wrap">
+            <a href="?tag=" class="bg-indigo-600 text-white text-xs px-4 py-1.5 rounded-full border border-indigo-600 transition-all">
+                All
+            </a>
+            <a href="?tag=tech" class="bg-slate-800 text-slate-400 text-xs px-4 py-1.5 rounded-full border border-slate-700 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all">
+                Tech
+            </a>
+            <a href="?tag=college-life" class="bg-slate-800 text-slate-400 text-xs px-4 py-1.5 rounded-full border border-slate-700 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all">
+                College Life
+            </a>
+            <a href="?tag=productivity" class="bg-slate-800 text-slate-400 text-xs px-4 py-1.5 rounded-full border border-slate-700 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all">
+                Productivity
+            </a>
+            <a href="?tag=mental-health" class="bg-slate-800 text-slate-400 text-xs px-4 py-1.5 rounded-full border border-slate-700 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all">
+                Mental Health
+            </a>
+            <a href="?tag=career" class="bg-slate-800 text-slate-400 text-xs px-4 py-1.5 rounded-full border border-slate-700 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all">
+                Career
+            </a>
+        </div>
+    </div>
+
+</div>
+<!-- MAIN CONTENT -->
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+    <!-- FEATURED POST -->
+    <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-4">
+        Featured Post
+    </p>
+
+    <a href="#" class="group grid grid-cols-2 gap-8 bg-white rounded-2xl border border-slate-200 p-6 mb-10 hover:shadow-lg transition-all">
+
+        <!-- featured image placeholder -->
+        <div class="bg-gradient-to-br from-indigo-900 to-violet-900 rounded-xl flex items-center justify-center min-h-52">
+            <span class="text-6xl">✍️</span>
+        </div>
+
+        <!-- featured content -->
+        <div class="flex flex-col justify-center gap-4">
+
+            <!-- tags -->
+            <div class="flex gap-2 flex-wrap">
+                <span class="bg-violet-100 text-violet-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    College Life
+                </span>
+                <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    Productivity
+                </span>
+            </div>
+
+            <!-- title -->
+            <h2 class="text-2xl text-slate-800 leading-snug group-hover:text-indigo-600 transition-all">
+                The day I almost dropped out and what changed my mind
+            </h2>
+
+            <!-- excerpt -->
+            <p class="text-slate-500 text-sm leading-relaxed">
+                It was week seven of semester two. I hadn't slept properly in days, my assignments were piling up, and I seriously considered calling it all off...
+            </p>
+
+            <!-- author and date -->
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs font-bold">
+                    AK
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-slate-700">Aryan K.</p>
+                    <p class="text-xs text-slate-400">Mar 18 · 5 min read</p>
+                </div>
+            </div>
+
+        </div>
+    </a>
+    <!-- LATEST POSTS GRID -->
+    <div class="flex items-center justify-between mb-6">
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+            Latest Posts
+        </p>
+        <p class="text-xs text-slate-400">
+            Page 1 of 3
+        </p>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6">
+
+        <!-- card 1 -->
+        <a href="#" class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all">
+            <div class="h-36 bg-blue-50 flex items-center justify-center text-4xl">
+                🧠
+            </div>
+            <div class="p-4">
+                <div class="flex gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
+                        Tech
+                    </span>
+                </div>
+                <h3 class="text-sm font-semibold text-slate-800 leading-snug mb-2 group-hover:text-indigo-600 transition-all">
+                    Building my first real project from scratch
+                </h3>
+                <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                    Nobody tells you how confusing it is when you first start building something real...
+                </p>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[10px] font-bold">
+                            SP
+                        </div>
+                        <span class="text-xs text-slate-600">Sneha P.</span>
+                    </div>
+                    <span class="text-xs text-slate-400">Mar 17</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- card 2 -->
+        <a href="#" class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all">
+            <div class="h-36 bg-purple-50 flex items-center justify-center text-4xl">
+                💆
+            </div>
+            <div class="p-4">
+                <div class="flex gap-2 mb-3">
+                    <span class="bg-violet-100 text-violet-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
+                        Mental Health
+                    </span>
+                </div>
+                <h3 class="text-sm font-semibold text-slate-800 leading-snug mb-2 group-hover:text-indigo-600 transition-all">
+                    What burnout actually feels like as a student
+                </h3>
+                <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                    It sneaks up on you slowly and then all at once you realize you have nothing left...
+                </p>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-pink-500 flex items-center justify-center text-white text-[10px] font-bold">
+                            RV
+                        </div>
+                        <span class="text-xs text-slate-600">Rahul V.</span>
+                    </div>
+                    <span class="text-xs text-slate-400">Mar 16</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- card 3 -->
+        <a href="#" class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all">
+            <div class="h-36 bg-amber-50 flex items-center justify-center text-4xl">
+                🎯
+            </div>
+            <div class="p-4">
+                <div class="flex gap-2 mb-3">
+                    <span class="bg-amber-100 text-amber-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
+                        Career
+                    </span>
+                </div>
+                <h3 class="text-sm font-semibold text-slate-800 leading-snug mb-2 group-hover:text-indigo-600 transition-all">
+                    Lessons from failing my first technical interview
+                </h3>
+                <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                    I bombed it completely. Here is everything I learned from that experience...
+                </p>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center text-white text-[10px] font-bold">
+                            PM
+                        </div>
+                        <span class="text-xs text-slate-600">Priya M.</span>
+                    </div>
+                    <span class="text-xs text-slate-400">Mar 15</span>
+                </div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="flex items-center justify-center gap-2 mt-10">
+        <a href="?page=1" class="w-9 h-9 rounded-lg bg-indigo-600 text-white text-sm flex items-center justify-center font-medium">
+            1
+        </a>
+        <a href="?page=2" class="w-9 h-9 rounded-lg border border-slate-200 bg-white text-slate-500 text-sm flex items-center justify-center hover:bg-slate-50 transition-all">
+            2
+        </a>
+        <a href="?page=3" class="w-9 h-9 rounded-lg border border-slate-200 bg-white text-slate-500 text-sm flex items-center justify-center hover:bg-slate-50 transition-all">
+            3
+        </a>
+        <a href="?page=2" class="w-9 h-9 rounded-lg border border-slate-200 bg-white text-slate-500 text-sm flex items-center justify-center hover:bg-slate-50 transition-all">
+            ›
+        </a>
+    </div>
+
+</div>
+<script>
+    const blogs = [
+        "Three things nobody tells you about your first year of college",
+        "How I finally stopped procrastinating — and what actually worked",
+        "Building my first real project from scratch",
+        "The day I almost dropped out and what changed my mind",
+        "Five Chrome extensions that saved my semester",
+        "What burnout actually feels like as a student",
+        "I spent 30 days journaling every night — here is what happened",
+        "How to study for exams when your brain refuses to cooperate",
+        "My honest review of learning to code while in college",
+        "Why I deleted Instagram for a month and what I learned",
+        "The productivity system that finally stuck for me",
+        "Lessons from failing my first technical interview",
+        "How I manage my mental health during exam season",
+        "What making my first app taught me about myself",
+        "The best decision I made in my second year of college",
+        "How to ask for help without feeling like a burden",
+        "Why side projects matter more than your GPA",
+        "How I went from failing to topping my class",
+        "The small habits that quietly changed my life this year",
+        "What I wish I knew before starting college",
+        "How to find your people in a new city",
+        "On feeling behind everyone else — and getting over it",
+    ];
+
+    function buildText() {
+        let t = '', c = 0;
+        while (c < 5000) {
+            const line = blogs[Math.floor(Math.random() * blogs.length)];
+            t += line + '   ·   ';
+            c += line.length + 7;
+        }
+        return t;
+    }
+
+    const hero      = document.getElementById('hero');
+    const heroBase  = document.getElementById('hero-base');
+    const heroColor = document.getElementById('hero-color');
+    const heroGlow  = document.getElementById('hero-glow');
+
+    const text = buildText();
+    heroBase.textContent  = text;
+    heroColor.textContent = text;
+
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) + 'px';
+        const y = (e.clientY - rect.top)  + 'px';
+        heroColor.style.setProperty('--mx', x);
+        heroColor.style.setProperty('--my', y);
+        heroGlow.style.setProperty('--mx', x);
+        heroGlow.style.setProperty('--my', y);
+    });
+
+    hero.addEventListener('mouseleave', () => {
+        heroColor.style.setProperty('--mx', '-500px');
+        heroColor.style.setProperty('--my', '-500px');
+        heroGlow.style.setProperty('--mx', '-500px');
+        heroGlow.style.setProperty('--my', '-500px');
+    });
+</script>
+
+{% endblock %}
